@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedro Pereira · Vision Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F4EF;
+  --white: #FDFCFA;
+  --card: #FFFFFF;
+  --dark: #0E0E0C;
+  --dark2: #1A1A18;
+  --gold: #B8922A;
+  --gold2: #D4AA50;
+  --gold-light: #F5E8C8;
+  --sage: #5A8A7A;
+  --sage2: #8AB8A8;
+  --sage-light: #DFF0EA;
+  --muted: #8A8878;
+  --border: rgba(0,0,0,0.07);
+  --border2: rgba(0,0,0,0.12);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--dark);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Subtle dot grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 52px 28px 100px;
+}
+
+/* ── TICKER ── */
+.ticker-wrap {
+  background: var(--dark);
+  overflow: hidden;
+  padding: 11px 0;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: rise 0.8s ease 0.05s forwards;
+}
+
+.ticker-inner {
+  display: flex;
+  animation: ticker 28s linear infinite;
+  white-space: nowrap;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 28px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  flex-shrink: 0;
+}
+
+.ticker-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold2); }
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── HEADER ── */
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border2);
+  opacity: 0;
+  animation: rise 0.9s ease 0.1s forwards;
+}
+
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--sage);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--sage); }
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -3px;
+}
+
+h1 .l1 { display: block; color: var(--dark); }
+h1 .l2 { display: block; color: var(--gold); }
+
+.header-meta {
+  text-align: right;
+  padding-bottom: 8px;
+}
+
+.meta-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+}
+
+.meta-sub {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 180px;
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* ── BMW HERO ── */
+.bmw-hero {
+  background: var(--dark2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: rise 0.9s ease 0.15s forwards;
+}
+
+/* Sky gradient */
+.bmw-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #1a1f2e 0%,
+    #2a3040 25%,
+    #1a2030 50%,
+    #0e1018 75%,
+    #080810 100%
+  );
+}
+
+/* Stars */
+.stars {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 55%;
+}
+
+/* Road */
+.road {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 38%;
+}
+
+/* Glow orb behind car */
+.glow-orb {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 200px;
+  background: radial-gradient(ellipse, rgba(184,146,42,0.18) 0%, rgba(184,146,42,0.05) 40%, transparent 70%);
+  filter: blur(30px);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.7; transform: translateX(-50%) scaleX(1); }
+  50% { opacity: 1; transform: translateX(-50%) scaleX(1.1); }
+}
+
+/* Headlight beams */
+.beam-left, .beam-right {
+  position: absolute;
+  bottom: 38%;
+  pointer-events: none;
+}
+
+.beam-left {
+  left: 50%;
+  margin-left: -340px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 80px 200px 0;
+  border-color: transparent rgba(255,240,180,0.04) transparent transparent;
+  transform-origin: right bottom;
+  transform: rotate(-15deg);
+  filter: blur(8px);
+}
+
+.beam-right {
+  right: 50%;
+  margin-right: -340px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 200px 80px;
+  border-color: transparent transparent rgba(255,240,180,0.04) transparent;
+  transform-origin: left bottom;
+  transform: rotate(15deg);
+  filter: blur(8px);
+}
+
+/* Car wrapper */
+.car-wrap {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 0 0;
+}
+
+/* Road SVG */
+.road-svg {
+  width: 100%;
+  position: relative;
+  z-index: 3;
+  margin-top: -20px;
+}
+
+/* Reflection */
+.car-reflection {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleY(-0.25);
+  transform-origin: bottom;
+  width: 80%;
+  max-width: 720px;
+  opacity: 0.2;
+  filter: blur(3px);
+}
+
+/* Car SVG */
+.car-svg {
+  width: 82%;
+  max-width: 720px;
+  filter:
+    drop-shadow(0 8px 40px rgba(0,0,0,0.8))
+    drop-shadow(0 0 80px rgba(184,146,42,0.12));
+  animation: float 5s ease-in-out infinite;
+  position: relative;
+  z-index: 5;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Hero content overlay */
+.hero-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 28px 36px;
+  background: linear-gradient(to top, rgba(14,14,12,1) 0%, rgba(14,14,12,0.85) 50%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  z-index: 6;
+}
+
+.hero-badge {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold2);
+  border: 1px solid rgba(184,146,42,0.3);
+  padding: 5px 12px;
+  background: rgba(184,146,42,0.06);
+  z-index: 6;
+}
+
+.hero-info {}
+.hero-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold2);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-tag::before { content: ''; width: 3px; height: 3px; border-radius: 50%; background: var(--gold2); }
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #fff;
+  line-height: 0.95;
+  margin-bottom: 6px;
+}
+.hero-sub { font-size: 12px; color: rgba(255,255,255,0.35); font-weight: 300; }
+
+.hero-specs { display: flex; gap: 24px; text-align: right; }
+.spec { display: flex; flex-direction: column; align-items: flex-end; }
+.spec-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--gold2);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.spec-lbl {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ── GOALS GRID ── */
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.goal-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 28px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: rise 0.9s ease forwards;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.goal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+.goal-card:nth-child(1) { animation-delay: 0.25s; }
+.goal-card:nth-child(2) { animation-delay: 0.32s; }
+.goal-card:nth-child(3) { animation-delay: 0.39s; }
+
+.goal-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.goal-card:nth-child(1)::before { background: var(--sage2); }
+.goal-card:nth-child(2)::before { background: var(--gold2); }
+.goal-card:nth-child(3)::before { background: var(--sage); }
+
+.goal-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.goal-icon { font-size: 30px; display: block; margin-bottom: 14px; }
+
+.goal-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+.goal-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.goal-timeline {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.goal-card:nth-child(1) .goal-timeline { color: var(--sage); }
+.goal-card:nth-child(2) .goal-timeline { color: var(--gold); }
+.goal-card:nth-child(3) .goal-timeline { color: var(--sage); }
+
+/* ── NUMBERS ── */
+.numbers-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: rise 0.9s ease 0.45s forwards;
+}
+
+.num-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 22px 20px;
+  border-radius: 4px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.num-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.num-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.num-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.num-val.dark { color: var(--dark); }
+.num-val.gold { color: var(--gold); }
+.num-val.sage { color: var(--sage); }
+
+.num-sub { font-size: 11px; color: var(--muted); font-weight: 300; line-height: 1.4; }
+
+/* ── TIMELINE ── */
+.timeline-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 32px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: rise 0.9s ease 0.52s forwards;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title::before {
+  content: '';
+  width: 3px;
+  height: 18px;
+  background: linear-gradient(180deg, var(--gold), var(--sage2));
+  border-radius: 2px;
+}
+
+.section-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+
+.track-line {
+  position: absolute;
+  top: 18px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--sage2) 0%, var(--gold2) 25%, var(--border2) 26%);
+  z-index: 0;
+}
+
+.track-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.track-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-bottom: 14px;
+  border: 1.5px solid;
+}
+
+.track-dot.active { background: var(--sage-light); border-color: var(--sage2); }
+.track-dot.pending { background: var(--bg); border-color: var(--border2); }
+
+.track-month {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.track-step.active .track-month { color: var(--sage); }
+
+.track-desc {
+  font-size: 12px;
+  color: var(--dark);
+  font-weight: 500;
+  line-height: 1.4;
+  max-width: 110px;
+}
+
+/* ── MANTRA ── */
+.mantra {
+  background: var(--dark2);
+  border-radius: 4px;
+  padding: 56px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: rise 0.9s ease 0.6s forwards;
+}
+
+.mantra::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 24px;
+  font-family: 'Syne', sans-serif;
+  font-size: 180px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.02);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.mantra-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,146,42,0.06) 0%, transparent 70%);
+}
+
+.mantra-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), var(--sage2));
+  margin: 0 auto 20px;
+  opacity: 0.4;
+}
+
+.mantra-text {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(19px, 3vw, 30px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.45;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.mantra-text .g { color: var(--gold2); }
+.mantra-text .s {
+  background: linear-gradient(90deg, var(--sage2), #B5D4C8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mantra-sig {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.18);
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .header { grid-template-columns: 1fr; }
+  .header-meta { text-align: left; }
+  .goals-grid { grid-template-columns: 1fr; }
+  .numbers-row { grid-template-columns: repeat(2, 1fr); }
+  .track { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .track-line { display: none; }
+  .hero-specs { display: none; }
+  .mantra { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-inner">
+      <div class="ticker-item"><span>BMW M4 Competition</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Liberdade Financeira</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>$100k Account</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Sair do Emprego</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Viagens & Luxos</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Prop Firm #1 Internacional</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Smart Money Concepts</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Consistency First</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>BMW M4 Competition</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Liberdade Financeira</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>$100k Account</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Sair do Emprego</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Viagens & Luxos</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Prop Firm #1 Internacional</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Smart Money Concepts</span><span class="ticker-dot"></span></div>
+      <div class="ticker-item"><span>Consistency First</span><span class="ticker-dot"></span></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="eyebrow">Vision Board · Maio 2026</div>
+      <h1><span class="l1">Pedro</span><span class="l2">Pereira.</span></h1>
+    </div>
+    <div class="header-meta">
+      <div class="meta-date">2026 → 2027</div>
+      <div class="meta-sub">O teu porquê. Nos dias difíceis, volta aqui.</div>
+    </div>
+  </div>
+
+  <!-- BMW HERO -->
+  <div class="bmw-hero">
+    <div class="bmw-sky"></div>
+
+    <!-- Stars canvas -->
+    <canvas id="stars" style="position:absolute;top:0;left:0;right:0;height:55%;width:100%;z-index:1;"></canvas>
+
+    <div class="glow-orb"></div>
+    <div class="beam-left"></div>
+    <div class="beam-right"></div>
+
+    <div class="hero-badge">Goal 01 · 2026–27</div>
+
+    <div class="car-wrap" style="position:relative;z-index:4;">
+      <!-- Main car SVG -->
+      <svg class="car-svg" viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#D4AA50"/>
+            <stop offset="30%" stop-color="#C8A030"/>
+            <stop offset="65%" stop-color="#8A6820"/>
+            <stop offset="100%" stop-color="#3A2800"/>
+          </linearGradient>
+          <linearGradient id="bodySide" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#6A5010"/>
+            <stop offset="40%" stop-color="#C8A030"/>
+            <stop offset="70%" stop-color="#D4AA50"/>
+            <stop offset="100%" stop-color="#A08020"/>
+          </linearGradient>
+          <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E8C860"/>
+            <stop offset="100%" stop-color="#A07820"/>
+          </linearGradient>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#A8C8D8" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#4A6878" stop-opacity="0.4"/>
+          </linearGradient>
+          <linearGradient id="wheelR" cx="50%" cy="50%" r="50%" fx="50%" fy="50%" gradientUnits="objectBoundingBox" id="wheelGrad">
+            <stop offset="0%" stop-color="#444"/>
+            <stop offset="100%" stop-color="#111"/>
+          </linearGradient>
+          <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#C8A030" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#C8A030" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="softGlow">
+            <feGaussianBlur stdDeviation="4" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="headlightGlow">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="bodyClip">
+            <path d="M90,280 C90,280 140,200 210,175 C280,150 370,138 480,134 C590,130 680,132 760,145 C830,156 880,178 910,210 C930,232 930,265 930,280 Z"/>
+          </clipPath>
+        </defs>
+
+        <!-- Ground reflection -->
+        <ellipse cx="500" cy="310" rx="440" ry="28" fill="url(#groundGrad)"/>
+
+        <!-- Shadow -->
+        <ellipse cx="500" cy="308" rx="400" ry="14" fill="rgba(0,0,0,0.5)"/>
+
+        <!-- ── MAIN BODY ── -->
+        <!-- Lower body / sill -->
+        <path d="M120,265 C120,265 150,255 220,250 C320,244 420,242 500,242 C580,242 680,244 780,250 C840,254 880,260 900,268 L900,282 C900,282 840,278 780,276 C680,272 580,270 500,270 C420,270 320,272 220,276 C150,278 120,280 120,280 Z" fill="url(#bodySide)"/>
+
+        <!-- Main body side -->
+        <path d="M90,280 C90,280 130,200 200,174 C270,148 365,136 480,132 C590,128 685,130 762,144 C832,156 882,180 912,212 C932,234 932,268 932,280 L90,280 Z" fill="url(#body)"/>
+
+        <!-- Body highlight stripe -->
+        <path d="M140,210 C200,195 310,182 460,178 C580,175 690,178 790,190 C840,196 870,204 885,214" stroke="rgba(255,220,120,0.4)" stroke-width="2" fill="none"/>
+        <path d="M145,218 C205,203 315,190 465,186 C585,183 695,186 795,198 C845,204 875,212 890,222" stroke="rgba(255,220,120,0.15)" stroke-width="1" fill="none"/>
+
+        <!-- ── ROOF & GREENHOUSE ── -->
+        <path d="M310,132 C340,108 390,84 450,74 C510,64 570,64 624,76 C670,86 706,104 722,132 Z" fill="url(#roof)"/>
+
+        <!-- Roof highlight -->
+        <path d="M325,130 C355,108 400,87 454,78 C508,69 566,69 616,80 C656,89 688,106 706,130" stroke="rgba(255,240,160,0.5)" stroke-width="1.5" fill="none"/>
+
+        <!-- ── WINDOWS ── -->
+        <!-- Front windscreen -->
+        <path d="M313,131 C342,108 392,86 449,77 C505,68 560,68 608,79 C648,88 680,106 698,131 Z" fill="url(#glass)"/>
+
+        <!-- Window frame -->
+        <path d="M313,131 C342,108 392,86 449,77 C505,68 560,68 608,79 C648,88 680,106 698,131" stroke="rgba(200,160,40,0.5)" stroke-width="2" fill="none"/>
+
+        <!-- A-pillar -->
+        <line x1="313" y1="131" x2="326" y2="131" stroke="rgba(200,160,40,0.4)" stroke-width="3"/>
+        <!-- C-pillar -->
+        <line x1="698" y1="131" x2="722" y2="131" stroke="rgba(200,160,40,0.4)" stroke-width="3"/>
+
+        <!-- ── DOOR LINES ── -->
+        <path d="M328,131 C330,170 332,210 334,250" stroke="rgba(180,140,30,0.35)" stroke-width="2" fill="none"/>
+        <path d="M510,130 C512,168 514,208 516,248" stroke="rgba(180,140,30,0.35)" stroke-width="2" fill="none"/>
+        <path d="M700,132 C704,170 708,210 712,250" stroke="rgba(180,140,30,0.35)" stroke-width="2" fill="none"/>
+
+        <!-- Door handles -->
+        <rect x="390" y="185" width="28" height="7" rx="3.5" fill="rgba(220,180,60,0.7)"/>
+        <rect x="570" y="185" width="28" height="7" rx="3.5" fill="rgba(220,180,60,0.7)"/>
+
+        <!-- ── FRONT END ── -->
+        <!-- Hood -->
+        <path d="M722,132 C760,140 820,160 880,190 C905,202 920,220 922,240 L920,265 C920,265 880,250 820,240 C780,233 740,228 722,228 L722,132 Z" fill="url(#body)"/>
+
+        <!-- Hood lines -->
+        <path d="M725,135 C775,145 835,168 880,195" stroke="rgba(255,220,100,0.3)" stroke-width="1.5" fill="none"/>
+        <path d="M730,152 C778,162 838,182 882,208" stroke="rgba(255,220,100,0.15)" stroke-width="1" fill="none"/>
+
+        <!-- ── KIDNEY GRILLE (front) ── -->
+        <!-- Grille surround -->
+        <path d="M890,215 C896,220 904,232 906,244 C908,256 904,268 896,274 C892,276 888,276 886,272 C882,266 882,255 884,244 C886,232 888,222 890,215 Z" fill="rgba(20,15,5,0.9)" stroke="rgba(200,160,40,0.6)" stroke-width="1.5"/>
+
+        <!-- Kidney shape divider -->
+        <path d="M892,228 C894,235 895,245 894,254" stroke="rgba(200,160,40,0.3)" stroke-width="1" fill="none"/>
+
+        <!-- Grille slats -->
+        <line x1="884" y1="230" x2="905" y2="228" stroke="rgba(200,160,40,0.5)" stroke-width="1.5"/>
+        <line x1="884" y1="237" x2="905" y2="236" stroke="rgba(200,160,40,0.5)" stroke-width="1.5"/>
+        <line x1="884" y1="244" x2="905" y2="244" stroke="rgba(200,160,40,0.5)" stroke-width="1.5"/>
+        <line x1="884" y1="251" x2="905" y2="252" stroke="rgba(200,160,40,0.5)" stroke-width="1.5"/>
+        <line x1="885" y1="258" x2="904" y2="260" stroke="rgba(200,160,40,0.5)" stroke-width="1.5"/>
+        <line x1="887" y1="265" x2="901" y2="267" stroke="rgba(200,160,40,0.5)" stroke-width="1.5"/>
+
+        <!-- ── HEADLIGHTS ── -->
+        <!-- Main headlight assembly -->
+        <path d="M840,208 C856,204 875,208 888,216 C876,216 860,218 848,222 C840,222 834,218 834,214 Z" fill="rgba(15,10,5,0.9)" stroke="rgba(200,160,40,0.4)" stroke-width="1"/>
+
+        <!-- DRL -->
+        <path d="M838,210 C852,207 868,209 880,214" stroke="rgba(255,245,200,0.9)" stroke-width="2.5" fill="none" filter="url(#headlightGlow)"/>
+        <path d="M838,210 C852,207 868,209 880,214" stroke="rgba(255,255,255,0.5)" stroke-width="1" fill="none"/>
+
+        <!-- Headlight glow -->
+        <ellipse cx="858" cy="214" rx="28" ry="8" fill="rgba(255,240,180,0.08)" filter="url(#headlightGlow)"/>
+
+        <!-- Lower air intake -->
+        <path d="M800,248 C820,244 858,242 882,245 C890,250 892,258 886,262 C870,265 840,265 818,262 C806,260 798,256 800,248 Z" fill="rgba(10,8,4,0.85)" stroke="rgba(180,140,30,0.3)" stroke-width="1"/>
+
+        <!-- Air intake vents -->
+        <line x1="810" y1="252" x2="878" y2="250" stroke="rgba(180,140,30,0.4)" stroke-width="1"/>
+        <line x1="810" y1="256" x2="878" y2="255" stroke="rgba(180,140,30,0.4)" stroke-width="1"/>
+        <line x1="812" y1="260" x2="876" y2="260" stroke="rgba(180,140,30,0.4)" stroke-width="1"/>
+
+        <!-- ── REAR END ── -->
+        <!-- Trunk/rear -->
+        <path d="M90,280 C90,280 108,240 130,220 C152,200 175,188 200,180 L200,132 C200,132 160,148 135,170 C110,192 90,220 90,280 Z" fill="url(#body)"/>
+
+        <!-- Rear lights -->
+        <rect x="95" y="225" width="28" height="10" rx="2" fill="rgba(180,40,30,0.7)"/>
+        <rect x="95" y="240" width="20" height="8" rx="2" fill="rgba(200,60,40,0.5)" filter="url(#softGlow)"/>
+
+        <!-- Rear light strip -->
+        <rect x="108" y="218" width="5" height="18" rx="2" fill="rgba(255,80,60,0.4)" filter="url(#softGlow)"/>
+
+        <!-- Exhaust pipes -->
+        <ellipse cx="140" cy="278" rx="10" ry="6" fill="rgba(30,25,15,0.9)" stroke="rgba(180,140,30,0.5)" stroke-width="1.5"/>
+        <ellipse cx="140" cy="278" rx="6" ry="3.5" fill="rgba(15,12,8,0.9)"/>
+        <ellipse cx="162" cy="278" rx="10" ry="6" fill="rgba(30,25,15,0.9)" stroke="rgba(180,140,30,0.5)" stroke-width="1.5"/>
+        <ellipse cx="162" cy="278" rx="6" ry="3.5" fill="rgba(15,12,8,0.9)"/>
+
+        <!-- Diffuser -->
+        <path d="M115,270 C130,268 155,267 172,270 L175,278 C160,278 140,278 125,278 Z" fill="rgba(20,15,8,0.8)" stroke="rgba(150,120,30,0.3)" stroke-width="1"/>
+
+        <!-- ── WHEELS ── -->
+        <!-- Rear wheel -->
+        <circle cx="250" cy="286" r="52" fill="#0a0905" stroke="rgba(200,160,40,0.5)" stroke-width="2"/>
+        <circle cx="250" cy="286" r="38" fill="#111008" stroke="rgba(180,140,30,0.3)" stroke-width="1.5"/>
+        <!-- Tire tread -->
+        <circle cx="250" cy="286" r="51" fill="none" stroke="rgba(60,50,30,0.3)" stroke-width="2" stroke-dasharray="8,4"/>
+        <!-- Rim -->
+        <circle cx="250" cy="286" r="24" fill="#0a0905" stroke="rgba(200,160,40,0.5)" stroke-width="1.5"/>
+        <!-- Center cap -->
+        <circle cx="250" cy="286" r="8" fill="rgba(200,160,40,0.8)"/>
+        <circle cx="250" cy="286" r="5" fill="rgba(20,15,5,0.9)"/>
+        <!-- 5 spokes -->
+        <g stroke="rgba(200,160,40,0.7)" stroke-width="2.5" stroke-linecap="round">
+          <line x1="250" y1="262" x2="250" y2="278"/>
+          <line x1="273" y1="270" x2="262" y2="282"/>
+          <line x1="265" y1="295" x2="253" y2="290"/>
+          <line x1="235" y1="295" x2="247" y2="290"/>
+          <line x1="227" y1="270" x2="238" y2="282"/>
+        </g>
+        <!-- Brake caliper -->
+        <path d="M232,268 C228,272 228,278 232,282" stroke="rgba(180,40,30,0.6)" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <!-- Front wheel -->
+        <circle cx="752" cy="286" r="52" fill="#0a0905" stroke="rgba(200,160,40,0.5)" stroke-width="2"/>
+        <circle cx="752" cy="286" r="38" fill="#111008" stroke="rgba(180,140,30,0.3)" stroke-width="1.5"/>
+        <circle cx="752" cy="286" r="51" fill="none" stroke="rgba(60,50,30,0.3)" stroke-width="2" stroke-dasharray="8,4"/>
+        <circle cx="752" cy="286" r="24" fill="#0a0905" stroke="rgba(200,160,40,0.5)" stroke-width="1.5"/>
+        <circle cx="752" cy="286" r="8" fill="rgba(200,160,40,0.8)"/>
+        <circle cx="752" cy="286" r="5" fill="rgba(20,15,5,0.9)"/>
+        <g stroke="rgba(200,160,40,0.7)" stroke-width="2.5" stroke-linecap="round">
+          <line x1="752" y1="262" x2="752" y2="278"/>
+          <line x1="775" y1="270" x2="764" y2="282"/>
+          <line x1="767" y1="295" x2="755" y2="290"/>
+          <line x1="737" y1="295" x2="749" y2="290"/>
+          <line x1="729" y1="270" x2="740" y2="282"/>
+        </g>
+        <path d="M734,268 C730,272 730,278 734,282" stroke="rgba(180,40,30,0.6)" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <!-- Wheel arches shadow -->
+        <path d="M198,280 C198,260 220,242 250,242 C280,242 302,260 302,280" fill="rgba(0,0,0,0.4)"/>
+        <path d="M700,280 C700,260 722,242 752,242 C782,242 804,260 804,280" fill="rgba(0,0,0,0.4)"/>
+
+      </svg>
+
+      <!-- Road with lane markings -->
+      <svg class="road-svg" viewBox="0 0 1000 120" preserveAspectRatio="none" style="height:80px;margin-top:-10px;">
+        <defs>
+          <linearGradient id="roadGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#181410"/>
+            <stop offset="100%" stop-color="#0A0805"/>
+          </linearGradient>
+          <linearGradient id="roadFade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#181410" stop-opacity="0"/>
+            <stop offset="15%" stop-color="#181410" stop-opacity="1"/>
+            <stop offset="85%" stop-color="#181410" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#181410" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect width="1000" height="120" fill="url(#roadGrad)"/>
+        <rect width="1000" height="120" fill="url(#roadFade)"/>
+        <!-- Lane lines with perspective -->
+        <line x1="500" y1="0" x2="100" y2="120" stroke="rgba(200,160,40,0.15)" stroke-width="1"/>
+        <line x1="500" y1="0" x2="900" y2="120" stroke="rgba(200,160,40,0.15)" stroke-width="1"/>
+        <!-- Center dashes -->
+        <line x1="500" y1="5" x2="490" y2="35" stroke="rgba(200,160,40,0.5)" stroke-width="2" stroke-dasharray="6,8"/>
+        <line x1="490" y1="38" x2="475" y2="75" stroke="rgba(200,160,40,0.3)" stroke-width="2" stroke-dasharray="6,10"/>
+        <line x1="474" y1="78" x2="455" y2="115" stroke="rgba(200,160,40,0.15)" stroke-width="2" stroke-dasharray="6,12"/>
+        <!-- Road surface texture lines -->
+        <line x1="0" y1="40" x2="1000" y2="40" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+        <line x1="0" y1="80" x2="1000" y2="80" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <div class="hero-overlay">
+      <div class="hero-info">
+        <div class="hero-tag">Automóvel de sonho</div>
+        <div class="hero-title">BMW M4<br>Competition</div>
+        <div class="hero-sub">~€90.000 · O carro que mereces por cada noite de estudo</div>
+      </div>
+      <div class="hero-specs">
+        <div class="spec"><div class="spec-val">510</div><div class="spec-lbl">Cavalos</div></div>
+        <div class="spec"><div class="spec-val">3.9s</div><div class="spec-lbl">0–100 km/h</div></div>
+        <div class="spec"><div class="spec-val">~€90k</div><div class="spec-lbl">Objetivo</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOALS -->
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="goal-num">Goal 02</div>
+      <span class="goal-icon">💼</span>
+      <div class="goal-title">Liberdade<br>Financeira</div>
+      <div class="goal-desc">Não depender de um salário. O trading como fonte principal de rendimento. As tuas regras, os teus horários, a tua vida.</div>
+      <div class="goal-timeline">→ Meta · 12 meses</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">Goal 03</div>
+      <span class="goal-icon">🚪</span>
+      <div class="goal-title">Sair do<br>Emprego</div>
+      <div class="goal-desc">Trabalhar para ti próprio. Acordar sem alarme. Sem chefes, sem reuniões. Só tu e os gráficos.</div>
+      <div class="goal-timeline">→ Quando consistente</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-num">Goal 04</div>
+      <span class="goal-icon">✈️</span>
+      <div class="goal-title">Viagens<br>& Luxos</div>
+      <div class="goal-desc">Viajar quando e para onde quiseres. Sem pedir férias. Hotéis de categoria, experiências que ficam para a vida.</div>
+      <div class="goal-timeline">→ Meta · 2027</div>
+    </div>
+  </div>
+
+  <!-- NUMBERS -->
+  <div class="numbers-row">
+    <div class="num-card">
+      <div class="num-label">Conta actual</div>
+      <div class="num-val dark">$100k</div>
+      <div class="num-sub">Prop firm · 1.º lugar internacional</div>
+    </div>
+    <div class="num-card">
+      <div class="num-label">A 3% / mês</div>
+      <div class="num-val sage">$3.000</div>
+      <div class="num-sub">Conservador e sustentável</div>
+    </div>
+    <div class="num-card">
+      <div class="num-label">A 5% / mês</div>
+      <div class="num-val gold">$5.000</div>
+      <div class="num-sub">Objetivo de médio prazo</div>
+    </div>
+    <div class="num-card">
+      <div class="num-label">Ano a 5%</div>
+      <div class="num-val gold">$60k</div>
+      <div class="num-sub">Liberdade financeira real</div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-card">
+    <div class="section-head">
+      <div class="section-title">O caminho — 12 meses</div>
+      <div class="section-meta">Maio 2026 → Abril 2027</div>
+    </div>
+    <div class="track">
+      <div class="track-line"></div>
+      <div class="track-step active">
+        <div class="track-dot active">📚</div>
+        <div class="track-month">Mai 2026</div>
+        <div class="track-desc">Estudar Liquidity Concepts</div>
+      </div>
+      <div class="track-step">
+        <div class="track-dot pending">🎯</div>
+        <div class="track-month">Jun – Jul</div>
+        <div class="track-desc">Entrar na conta. Primeiros trades.</div>
+      </div>
+      <div class="track-step">
+        <div class="track-dot pending">📈</div>
+        <div class="track-month">Ago – Out</div>
+        <div class="track-desc">3 meses positivos consecutivos</div>
+      </div>
+      <div class="track-step">
+        <div class="track-dot pending">🏆</div>
+        <div class="track-month">Nov – Abr</div>
+        <div class="track-desc">Escalar. Liberdade financeira.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANTRA -->
+  <div class="mantra">
+    <div class="mantra-glow"></div>
+    <div class="mantra-line"></div>
+    <div class="mantra-text">
+      Cada noite de estudo é uma prestação<br>
+      do <span class="g">BMW M4</span> e da tua <span class="s">liberdade.</span>
+    </div>
+    <div class="mantra-line"></div>
+    <div class="mantra-sig">Pedro Pereira · Maio 2026 · $100k · Prop Firm #1 Internacional</div>
+  </div>
+
+</div>
+
+<script>
+// Stars
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+function resizeStars() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  drawStars();
+}
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < 120; i++) {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+    const r = Math.random() * 1.2 + 0.2;
+    const op = Math.random() * 0.7 + 0.1;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,245,220,${op})`;
+    ctx.fill();
+  }
+}
+resizeStars();
+window.addEventListener('resize', resizeStars);
+</script>
+</body>
+</html>
